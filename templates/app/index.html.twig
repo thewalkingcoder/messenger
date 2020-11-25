@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Form !{% endblock %}
+
+{% block body %}
+{{ form_start(form) }}
+{{ form_widget(form.name) }}
+    <button type="submit">SAVE</button>
+{{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,25 @@
+framework:
+    messenger:
+        default_bus: command.bus
+        buses:
+            command.bus:
+                middleware:
+                    - validation
+                    - doctrine_transaction
+            query.bus:
+                middleware:
+                    - validation
+            event.bus:
+                default_middleware: allow_no_handlers
+                middleware:
+                    - validation
+            event.store.bus:
+                default_middleware: allow_no_handlers
+                middleware:
+                    - validation
+
+        transports:
+            async:
+                dsn: "%env(MESSENGER_TRANSPORT_DSN)%"
+        routing:
+            'App\Post\Application\Event\PostWasCreated': async
